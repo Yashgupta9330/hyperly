@@ -5,7 +5,7 @@ interface TokenState {
 }
 
 const initialState: TokenState = {
-  token: localStorage.getItem('token'), // Load token from localStorage on initial load
+  token: null,
 };
 
 const tokenSlice = createSlice({
@@ -14,11 +14,9 @@ const tokenSlice = createSlice({
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
-      localStorage.setItem('token', action.payload); // Save token to localStorage
     },
     removeToken: (state) => {
       state.token = null;
-      localStorage.removeItem('token'); // Remove token from localStorage
     },
   },
 });
