@@ -10,13 +10,16 @@ import User from '@/components/User';
 
 
 
+
 const Home: React.FC = () => {
   const [totalPosts, setTotalPosts] = useState<PostData[]>([]);
   const [posts, setPosts] = useState<PostData[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOption, setSortOption] = useState<string>('');
   const [filterOption, setFilterOption] = useState<string[]>([]);
+ 
 
+  
   const handleFilterOptionClick = (option: string) => {
     setFilterOption(prev =>
       prev.includes(option) ? prev.filter(opt => opt !== option) : [...prev, option]
@@ -24,6 +27,7 @@ const Home: React.FC = () => {
   };
    
 
+  
 
 
   useEffect(() => {
@@ -62,7 +66,7 @@ const Home: React.FC = () => {
   }, [searchQuery, sortOption, filterOption, totalPosts]);
 
   return (
-      <div className='content flex flex-col gap-3'>
+      <div className='content flex flex-col gap-4'>
         <Navbar />
         <div className='w-full flex items-center justify-center px-4 py-2 gap-2'>
           <h3 className='font-bold leading-[34.8px] text-[#2A2930]'>Trending</h3>

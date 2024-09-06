@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Post from './Post';
 import { PostData } from '../interfaces/post';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 
 
@@ -14,7 +16,7 @@ interface PostTabProps {
 
 const PostTab: React.FC<PostTabProps> = ({ posts, setPosts, setTotalPosts, typeOption }) => {
   const [loading, setLoading] = useState<boolean>(true);
-
+  const token = useSelector((state: RootState) => state.token);
   useEffect(() => {
     async function fetchPosts() {
       setLoading(true);
@@ -22,7 +24,7 @@ const PostTab: React.FC<PostTabProps> = ({ posts, setPosts, setTotalPosts, typeO
         const response = await fetch('https://api.hyperly.ai/viral/inspirations', {
           method: 'GET',
           headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM2JmOTY2ZDk3NDhmNGUxODlmNzBjYTIyNWM0MTUyYzUiLCJleHBpcmVzIjoxNzI3MjcyNTM0LjU0NzAwNTd9.nDtqjbMPoN8A7ogd79aPqRA_8UabeTw70Sygmku6BQE'
+            'Authorization': `Bearer ${token.token}`
           }
         });
 

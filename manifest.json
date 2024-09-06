@@ -1,13 +1,34 @@
 {
     "manifest_version": 3,
-    "name": "CRXJS React Vite Example with LinkedIn Auth",
+    "name": "Hyperly",
     "version": "1.0.0",
     "permissions": [
       "identity",
-      "storage"
+      "storage",
+      "activeTab",
+      "tabs",
+     "webNavigation",
+     "scripting"
     ],
+    "oauth2": {
+    "client_id": "86id7o3frfeuam",
+    "scopes": [
+      "openid",
+      "profile",
+      "email",
+      "w_member_social",
+      "r_basicprofile",
+      "r_organization_social",
+      "rw_organization_admin",
+      "w_organization_social"
+    ]
+  },
+    "background": {
+      "service_worker": "src/background.js"
+    },
     "host_permissions": [
-      "https://www.linkedin.com/*"
+      "https://www.linkedin.com/*",
+       "https://api.hyperly.ai/*"
     ],
     "content_scripts": [
       {

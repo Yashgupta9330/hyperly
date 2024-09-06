@@ -1,7 +1,29 @@
+import React, { ChangeEvent, InputHTMLAttributes, forwardRef } from 'react';
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import SearchIcons from '@/icons/Search';
-import React, { ChangeEvent } from 'react';
-import { Input } from "@/components/ui/input"
 
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> { }
+
+const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <Input
+        ref={ref}
+        className={cn(
+          "border-none", // Remove default border
+          "hover:border hover:border-gray-300", // Add border on hover
+          "focus:border focus:border-gray-300", // Add border on focus
+          "focus:ring-0 focus:ring-offset-0", // Remove focus ring
+          "focus:outline-none", // Remove default outline
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+CustomInput.displayName = "CustomInput";
 
 interface SearchProps {
   searchQuery: string;
@@ -13,37 +35,31 @@ const Search: React.FC<SearchProps> = ({ searchQuery, setSearchQuery }) => {
     setSearchQuery(event.target.value);
   };
 
-  
-
-
   return (
-    <div style={{ width: '267px', height: '40px' }}>
-      <div style={{
-        borderRadius: '4px',
-        gap: '8px',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        width: '100%',
-        backgroundColor: 'white',
-        overflow: 'hidden',
-        border: '1px solid #F5F5F9'
-      }}>
-        <div style={{ display: 'grid', placeItems: 'center', height: '40px', width: '48px', color: '#ccc' }}>
+    <div className="w-[267px] h-[40px]">
+      <div
+        className={cn(
+          "flex items-center w-full overflow-hidden rounded-md border border-[#F5F5F9] bg-white",
+          "gap-2"
+        )}
+      >
+        <div className="grid h-[40px] w-[48px] place-items-center text-gray-400">
           <SearchIcons />
         </div>
-         <Input
-          className='h-[40px] text-[16px] border border-none rounded-md focus:outline-none hover:border-white focus:border-none'
-          placeholder="Search posts.."
+        <CustomInput
+          className="h-[40px] text-[16px]"
+          placeholder="Search posts..."
           value={searchQuery}
           onChange={handleChange}
+          aria-label="Search posts"
         />
       </div>
     </div>
   );
 };
 
- export default Search; 
+export default Search;
+
 
 
 {/*import { ChevronDown } from "lucide-react"

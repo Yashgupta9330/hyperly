@@ -5,6 +5,7 @@ import Perfomance from "@/components/Perfomance";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import KeyMetrices from "@/components/KeyMetrices";
+import LinkedInAuth from "@/components/LinkedinAuth";
 
 
 interface IconProps {

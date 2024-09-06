@@ -43,7 +43,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const defaultCreatorName = 'LinkedIn User';
 
   return (
-    <div style={{ border: '1px solid var(--Borders-primary-light-3, #A6A6B3)' }} className="cursor-pointer w-full bg-white my-2 mx-4 rounded-lg">
+    <div style={{ border: '1px solid var(--Borders-primary-light-3, #A6A6B3)' }} className="cursor-pointer w-full bg-white my-2 mx-8 rounded-lg">
       {/*</div><div className="flex gap-2 p-4">
         <Profile src={post.creator_profile_image} />
         <div className="flex items-center justify-between w-full">
