@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function authenticate(sendResponse) {
-  const authUrl = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86id7o3frfeuam&redirect_uri=https://api.hyperly.ai/linkedin/extension/auth&scope=openid%20profile%20email%20w_member_social%20r_basicprofile%20r_organization_social%20rw_organization_admin%20w_organization_social";
+  const authUrl = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={clientid}&redirect_uri=https://api.hyperly.ai/linkedin/extension/auth&scope=openid%20profile%20email%20w_member_social%20r_basicprofile%20r_organization_social%20rw_organization_admin%20w_organization_social";
 
   console.log("Initiating authentication");
 
