@@ -14,7 +14,7 @@ const DefaultUserIcon: React.FC = () => (
 );
 
 interface ProfileProps {
-  src?: string; 
+  src?: string;
 }
 
 export const Profile: React.FC<ProfileProps> = ({ src }) => {

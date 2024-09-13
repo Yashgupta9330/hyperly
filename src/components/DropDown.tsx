@@ -36,9 +36,9 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdown, options, selectedOption, 
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className={`dropdown-toggle flex border gap-4 h-[50px] border-1 rounded-[4px] px-4 py-4 items-center justify-center bg-white ${
-          isAnySelected() ? 'bg-gray-200' : 'border-[#F5F5F9]'
-        }`}
+        style={{ border: '1px solid var(--Borders-primary-light-1, #F5F5F9)' }} 
+        className={`dropdown-toggle flex border gap-4 h-[50px] border-1 rounded-[4px] px-4 py-4 items-center justify-center bg-white ${isAnySelected() ? 'bg-gray-200' : 'border-[#F5F5F9]'
+          }`}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -55,9 +55,8 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdown, options, selectedOption, 
           {options.map((option, index) => (
             <li
               key={index}
-              className={`dropdown-item px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                isSelected(option) ? 'bg-black text-white' : ''
-              }`}
+              className={`dropdown-item px-4 py-2 hover:bg-gray-100 cursor-pointer ${isSelected(option) ? 'bg-black text-white' : ''
+                }`}
               role="option"
               onClick={() => handleSelect(option)}
             >

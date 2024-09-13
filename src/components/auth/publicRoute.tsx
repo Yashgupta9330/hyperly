@@ -1,6 +1,4 @@
-import { RootState } from '@/store/store';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 
@@ -9,10 +7,12 @@ interface PrivateRouteProps {
 }
 
 const PublicRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  const token = useSelector((state: RootState) => state.token);
+  const token = localStorage.getItem('token');
+  console.log("entered")
+  console.log("token", token)
 
-  if (token.token===null) {
-    return <>{children}</>; 
+  if (token === null) {
+    return <>{children}</>;
   } else {
     return <Navigate to="/" />;
   }

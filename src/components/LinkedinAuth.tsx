@@ -21,11 +21,11 @@ const useLinkedInAuth = () => {
           console.error('LinkedIn auth error:', chrome.runtime.lastError);
           return;
         }
-        
+
         // Extract the authorization code from the redirect URL
         const url = new URL(redirectUrl);
         const code = url.searchParams.get('code');
-        
+
         if (code) {
           // Send the code to your backend to exchange for a token
           exchangeCodeForToken(code);
@@ -52,7 +52,7 @@ const useLinkedInAuth = () => {
 
       const data = await response.json();
       setToken(data.access_token);
-      
+
       // Store the token
       chrome.storage.local.set({ linkedInToken: data.access_token }, () => {
         console.log('Token saved');

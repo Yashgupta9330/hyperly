@@ -6,8 +6,8 @@ interface PostContentProps {
 
 const PostContent: React.FC<PostContentProps> = ({ content }) => {
   return (
-    <div className='my-3 text-[#2A2930] text-[10px] w-full'>
-      <p className='my-3 px-4'>{content}</p>
+    <div className='my-3 text-[#2A2930] w-full'>
+      <p className='my-3 px-4 text-[16px]'>{content}</p>
     </div>
   );
 };

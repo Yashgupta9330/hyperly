@@ -11,11 +11,11 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
       <Input
         ref={ref}
         className={cn(
-          "border-none", // Remove default border
-          "hover:border hover:border-gray-300", // Add border on hover
-          "focus:border focus:border-gray-300", // Add border on focus
-          "focus:ring-0 focus:ring-offset-0", // Remove focus ring
-          "focus:outline-none", // Remove default outline
+          "border-none",
+          "hover:border-none",
+          "focus:border-none",
+          "focus:ring-0 focus:ring-offset-0",
+          "focus:outline-none",
           className
         )}
         {...props}
@@ -36,14 +36,15 @@ const Search: React.FC<SearchProps> = ({ searchQuery, setSearchQuery }) => {
   };
 
   return (
-    <div className="w-[267px] h-[40px]">
+    <div className="w-[250px] h-[40px]">
       <div
+        style={{ border: '1px solid var(--Borders-primary-light-1, #F5F5F9)' }}
         className={cn(
-          "flex items-center w-full overflow-hidden rounded-md border border-[#F5F5F9] bg-white",
+          "flex items-center w-full overflow-hidden rounded-md bg-white",
           "gap-2"
         )}
       >
-        <div className="grid h-[40px] w-[48px] place-items-center text-gray-400">
+        <div className="grid h-[40px] w-[48px] place-items-center text-gray-400 cursor-pointer">
           <SearchIcons />
         </div>
         <CustomInput

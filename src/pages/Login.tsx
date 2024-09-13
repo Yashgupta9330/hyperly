@@ -10,7 +10,7 @@ const LinkedInLoginButton: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const LINKEDIN_USER_PROFILE_URL = 'https://api.hyperly.ai/user/me';
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const goToHome = () => {
     navigate('/');
@@ -26,7 +26,7 @@ const LinkedInLoginButton: React.FC = () => {
   }, []);
 
   async function fetchUserProfile(token: string) {
-    console.log("fetching",token);
+    console.log("fetching", token);
     try {
       const response = await axios.get(LINKEDIN_USER_PROFILE_URL, {
         headers: {
@@ -35,9 +35,10 @@ const LinkedInLoginButton: React.FC = () => {
         }
       });
       console.log("response", response.data);
-      setUs(response.data); 
+      setUs(response.data);
       dispatch(setUser(response.data));
       localStorage.setItem('token', token);
+      localStorage.setItem("me", response.data.linkedin_accounts[0].linkedin_username);
       dispatch(setToken(token));
       goToHome();
     } catch (error) {
@@ -53,21 +54,22 @@ const LinkedInLoginButton: React.FC = () => {
     if (chrome && chrome.runtime) {
       try {
         const response = await chrome.runtime.sendMessage({ action: 'authenticate' });
+        await chrome.storage.local.set({ "token": response.token });
         if (response.token) {
           await fetchUserProfile(response.token);
-        } 
+        }
         else {
           setError('No token received');
         }
-      } 
+      }
       catch (err) {
         setError('Authentication failed. Please try again.');
         console.error(err);
       }
-       finally {
+      finally {
         setIsLoading(false);
       }
-    } 
+    }
     else {
       setError('Chrome runtime API not available');
       setIsLoading(false);
@@ -86,9 +88,8 @@ const LinkedInLoginButton: React.FC = () => {
         <button
           onClick={login}
           disabled={isLoading}
-          className={`bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center ${
-            isLoading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          className={`bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center ${isLoading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
         >
           {isLoading ? (
             <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
